@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zayzah — Coming soon</title>
-<meta name="description" content="Zayzah — eastern wear for little girls, ages 1 to 8. Launching 1 March 2027.">
-<meta name="theme-color" content="#FDFAF4">
+<meta name="description" content="Zayzah — eastern wear for little girls. Launching 1 March 2027.">
+<meta name="theme-color" content="#F5EEE2">
 <meta property="og:title" content="Zayzah — Coming soon">
-<meta property="og:description" content="Eastern wear for little girls, ages 1 to 8. Launching 1 March 2027.">
+<meta property="og:description" content="Eastern wear for little girls. Launching 1 March 2027.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zayzah.com/">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -20,63 +20,112 @@
 
 :root{--ivory:#FDFAF4;--linen:#F5EEE2;--beige:#EADFCB;--gold:#B08D4C;--gold-light:#DCC592;--gold-dark:#86652A;--taupe:#6F5D4B;--ink:#2F241C}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
-body{min-height:100svh;display:flex;flex-direction:column;background:radial-gradient(120% 80% at 50% 0%,var(--ivory) 0%,var(--linen) 70%,var(--beige) 130%) fixed;color:var(--ink);font-family:"Jost",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px 20px 32px}
+html,body{margin:0}
+body{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;background:linear-gradient(180deg,var(--linen) 0%,var(--beige) 100%) fixed;color:var(--ink);font-family:"Jost",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-.mark{width:84px;color:var(--gold);animation:float 6s ease-in-out infinite}
-.name{margin:18px 0 0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(34px,9vw,58px);letter-spacing:.34em;margin-right:-.34em;line-height:1.1}
-.rule{width:64px;height:1px;background:var(--gold-light);margin:26px auto}
-.soon{margin:0;font-size:12px;font-weight:500;letter-spacing:.42em;margin-right:-.42em;text-transform:uppercase;color:var(--gold-dark)}
-.line{margin:14px 0 0;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(21px,5vw,28px);line-height:1.3;color:var(--taupe);text-wrap:balance}
+/* Embroidered motif repeated softly across the background */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23B08D4C' stroke-width='1' opacity='.26'%3E%3Cpath d='M36 24c4 5 4 9 0 12c-4-3-4-7 0-12zM36 48c4-5 4-9 0-12c-4 3-4 7 0 12zM24 36c5-4 9-4 12 0c-3 4-7 4-12 0zM48 36c-5-4-9-4-12 0c3 4 7 4 12 0z'/%3E%3C/g%3E%3Cg fill='%23B08D4C' opacity='.3'%3E%3Ccircle cx='0' cy='0' r='1.5'/%3E%3Ccircle cx='72' cy='0' r='1.5'/%3E%3Ccircle cx='0' cy='72' r='1.5'/%3E%3Ccircle cx='72' cy='72' r='1.5'/%3E%3C/g%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(ellipse at center,transparent 25%,#000 85%);mask-image:radial-gradient(ellipse at center,transparent 25%,#000 85%)}
 
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,2.5vw,18px);width:100%;max-width:520px;margin:38px 0 0;padding:0;list-style:none}
-.count li{background:rgba(253,250,244,.75);border:1px solid var(--beige);border-radius:4px;padding:18px 4px 14px}
-.count b{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(32px,9vw,52px);line-height:1;font-variant-numeric:tabular-nums lining-nums;color:var(--ink)}
-.count span{display:block;margin-top:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
-.date{margin:22px 0 0;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
+/* Butterflies drifting up behind the card */
+.sky{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.fly{position:absolute;bottom:-60px;left:var(--x);width:var(--size);color:var(--gold);opacity:0;animation:drift var(--time) linear var(--delay) infinite}
+.fly svg{display:block;width:100%;animation:flap .55s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(0,0) rotate(var(--tilt));opacity:0}10%{opacity:var(--fade)}50%{transform:translate(var(--sway),-55vh) rotate(calc(var(--tilt) * -1))}90%{opacity:var(--fade)}100%{transform:translate(0,-115vh) rotate(var(--tilt));opacity:0}}
+@keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.4)}}
 
-.follow{margin:44px 0 0;font-size:14px;color:var(--taupe)}
+main{position:relative;z-index:1;flex:1;width:100%;display:flex;align-items:center;justify-content:center;padding:36px 16px 20px}
+
+/* The arch */
+.arch{position:relative;width:100%;max-width:560px;padding:clamp(64px,17vw,104px) clamp(18px,5vw,48px) 44px;text-align:center;background:linear-gradient(180deg,#FFFDF8 0%,var(--ivory) 100%);border:1px solid var(--gold);border-radius:280px 280px 10px 10px;box-shadow:0 40px 90px -40px rgba(134,101,42,.55),0 0 0 8px rgba(253,250,244,.55)}
+.arch::before{content:"";position:absolute;inset:9px;border:1px solid var(--gold-light);border-radius:271px 271px 5px 5px;pointer-events:none}
+
+.mark{display:inline-block;width:92px;color:var(--gold)}
+.mark div{animation:float 6s ease-in-out infinite}
+.mark svg{display:block;width:100%;animation:breathe 2.6s ease-in-out infinite alternate}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes breathe{from{transform:scaleX(1)}to{transform:scaleX(.82)}}
+
+.name{margin:16px 0 0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(36px,10.5vw,64px);letter-spacing:.3em;margin-right:-.3em;line-height:1.1;background:linear-gradient(100deg,var(--gold-dark) 0%,var(--gold) 25%,#E9D6A8 50%,var(--gold) 75%,var(--gold-dark) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .9s cubic-bezier(.2,.7,.2,1) .13s forwards,shimmer 7s linear infinite}
+@keyframes shimmer{from{background-position:220% 0}to{background-position:0 0}}
+
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto;color:var(--gold)}
+.orn::before,.orn::after{content:"";width:56px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-light))}
+.orn::after{transform:scaleX(-1)}
+.orn svg{width:22px;height:22px}
+
+.soon{margin:0;font-size:12px;font-weight:500;letter-spacing:.46em;margin-right:-.46em;text-transform:uppercase;color:var(--gold-dark)}
+.line{margin:12px 0 0;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(23px,5.6vw,31px);line-height:1.3;color:var(--taupe);text-wrap:balance}
+
+/* Countdown: each number sits in a slowly turning stitched ring */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,2vw,14px);max-width:440px;margin:34px auto 0;padding:0;list-style:none}
+.count li{position:relative;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 50% 35%,#fff 0%,var(--linen) 100%)}
+.count li::before{content:"";position:absolute;inset:0;border:1.5px dashed var(--gold);border-radius:50%;animation:turn 40s linear infinite}
+.count li::after{content:"";position:absolute;inset:5px;border:1px solid var(--beige);border-radius:50%}
+.count b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(26px,7.6vw,42px);line-height:1;font-variant-numeric:tabular-nums lining-nums;color:var(--ink)}
+.count span{margin-top:4px;font-size:clamp(8px,2.2vw,10px);letter-spacing:.18em;margin-right:-.18em;text-transform:uppercase;color:var(--gold-dark)}
+@keyframes turn{to{transform:rotate(360deg)}}
+
+.date{margin:26px 0 0;font-family:"Cormorant Garamond",serif;font-size:clamp(19px,4.6vw,23px);letter-spacing:.06em;color:var(--ink)}
+.date em{font-style:italic;color:var(--gold-dark)}
+
+.follow{margin:30px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
 .links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:14px 0 0;padding:0;list-style:none}
-.links a{display:inline-block;padding:11px 20px;border:1px solid var(--gold);border-radius:999px;color:var(--gold-dark);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.04em;transition:background .2s,color .2s}
-.links a:hover,.links a:focus-visible{background:var(--gold);color:var(--ivory);outline:none}
+.links a{display:inline-block;padding:11px 22px;border:1px solid var(--gold);border-radius:999px;background:linear-gradient(180deg,#C2A163,var(--gold));color:#fff;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.06em;box-shadow:0 8px 18px -10px rgba(134,101,42,.8);transition:transform .2s,box-shadow .2s,background .2s}
+.links a:hover,.links a:focus-visible{transform:translateY(-2px);background:var(--gold-dark);box-shadow:0 12px 22px -10px rgba(134,101,42,.9);outline:none}
 
-footer{padding:20px;text-align:center;font-size:13px;color:var(--taupe)}
+@media (max-width:420px){.links{gap:7px}.links a{padding:10px 15px;font-size:13px}}
+
+footer{position:relative;z-index:1;padding:8px 20px 26px;text-align:center;font-size:13px;color:var(--taupe)}
 footer a{color:var(--gold-dark)}
 
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@media (prefers-reduced-motion:reduce){.mark{animation:none}}
+/* Gentle entrance, one piece after another */
+.rise{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i) * .13s)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .sky{display:none}
+  .mark div,.mark svg,.count li::before{animation:none}
+  .rise,.name{opacity:1;animation:none}
+}
 </style>
 </head>
 <body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+
 <main>
-  <svg class="mark" viewBox="-136 -98 272 224" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M3,-6 C30,-95 120,-120 128,-62 C132,-22 70,6 3,4 M3,7 C60,10 100,40 84,78 C70,108 22,84 3,24"/>
-    <path d="M-3,-6 C-30,-95 -120,-120 -128,-62 C-132,-22 -70,6 -3,4 M-3,7 C-60,10 -100,40 -84,78 C-70,108 -22,84 -3,24"/>
-    <path d="M-2,-24 C-12,-54 -28,-68 -42,-70 M2,-24 C12,-54 28,-68 42,-70"/>
-    <ellipse cx="0" cy="2" rx="4" ry="27" fill="currentColor" stroke="none"/>
-  </svg>
-  <h1 class="name">ZAYZAH</h1>
-  <div class="rule"></div>
-  <p class="soon" id="soon">Coming soon</p>
-  <p class="line">Eastern wear for little girls, ages 1 to 8</p>
+  <div class="arch">
+    <div class="mark rise" style="--i:0"><div>
+      <svg id="butterfly" viewBox="-136 -98 272 224" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3,-6 C30,-95 120,-120 128,-62 C132,-22 70,6 3,4 M3,7 C60,10 100,40 84,78 C70,108 22,84 3,24"/>
+        <path d="M-3,-6 C-30,-95 -120,-120 -128,-62 C-132,-22 -70,6 -3,4 M-3,7 C-60,10 -100,40 -84,78 C-70,108 -22,84 -3,24"/>
+        <path d="M-2,-24 C-12,-54 -28,-68 -42,-70 M2,-24 C12,-54 28,-68 42,-70"/>
+        <ellipse cx="0" cy="2" rx="4" ry="27" fill="currentColor" stroke="none"/>
+      </svg>
+    </div></div>
+    <h1 class="name rise">ZAYZAH</h1>
+    <div class="orn rise" style="--i:2" aria-hidden="true">
+      <svg viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M0-10c3 4 3 7 0 10c-3-3-3-6 0-10zM0 10c3-4 3-7 0-10c-3 3-3 6 0 10zM-10 0c4-3 7-3 10 0c-3 3-6 3-10 0zM10 0c-4-3-7-3-10 0c3 3 6 3 10 0z"/><circle r="1.4" fill="currentColor" stroke="none"/></svg>
+    </div>
+    <p class="soon rise" id="soon" style="--i:3">Coming soon</p>
+    <p class="line rise" style="--i:4">Eastern wear for little girls</p>
 
-  <ul class="count" id="count" aria-label="Time left until launch">
-    <li><b id="d">–</b><span>Days</span></li>
-    <li><b id="h">–</b><span>Hours</span></li>
-    <li><b id="m">–</b><span>Minutes</span></li>
-    <li><b id="s">–</b><span>Seconds</span></li>
-  </ul>
-  <p class="date" id="date">Launching 1 March 2027</p>
+    <ul class="count rise" id="count" style="--i:5" aria-label="Time left until launch">
+      <li><b id="d">–</b><span>Days</span></li>
+      <li><b id="h">–</b><span>Hours</span></li>
+      <li><b id="m">–</b><span>Minutes</span></li>
+      <li><b id="s">–</b><span>Seconds</span></li>
+    </ul>
+    <p class="date rise" id="date" style="--i:6"><em>Launching</em> 1 March 2027</p>
 
-  <p class="follow">Follow us for a first look</p>
-  <ul class="links">
-    <li><a href="https://www.instagram.com/zayzah.ae" target="_blank" rel="noopener">Instagram</a></li>
-    <li><a href="https://www.tiktok.com/@zayzah.ae" target="_blank" rel="noopener">TikTok</a></li>
-    <li><a href="https://www.facebook.com/zayzah.ae" target="_blank" rel="noopener">Facebook</a></li>
-  </ul>
+    <p class="follow rise" style="--i:7">Follow us for a first look</p>
+    <ul class="links rise" style="--i:8">
+      <li><a href="https://www.instagram.com/zayzah.ae" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@zayzah.ae" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.facebook.com/zayzah.ae" target="_blank" rel="noopener">Facebook</a></li>
+    </ul>
+  </div>
 </main>
-<footer>Abu Dhabi, UAE &nbsp;·&nbsp; <a href="mailto:admin@zayzah.com">admin@zayzah.com</a></footer>
+<footer>Abu Dhabi, UAE &nbsp;·&nbsp; <a href="mailto:info@zayzah.com">info@zayzah.com</a></footer>
 
 <script>
 // Launch: midnight at the start of 1 March 2027, UAE time (UTC+4).
@@ -100,6 +149,17 @@ function tick() {
 }
 var timer = setInterval(tick, 1000);
 tick();
+
+// Background butterflies: copies of the mark, each with its own place, size and pace.
+var sky = document.getElementById("sky"), mark = document.getElementById("butterfly");
+[[6, 30, 26, 0, .5, 12], [17, 20, 34, 9, .35, -10], [30, 38, 22, 17, .55, 8], [68, 24, 30, 4, .4, -14], [82, 36, 24, 13, .55, 10], [93, 18, 32, 21, .3, -8]].forEach(function (b) {
+  var fly = document.createElement("div"), copy = mark.cloneNode(true);
+  copy.removeAttribute("id");
+  fly.className = "fly";
+  fly.style.cssText = "--x:" + b[0] + "%;--size:" + b[1] + "px;--time:" + b[2] + "s;--delay:-" + b[3] + "s;--fade:" + b[4] + ";--tilt:" + b[5] + "deg;--sway:" + (b[5] * 4) + "px";
+  fly.appendChild(copy);
+  sky.appendChild(fly);
+});
 </script>
 </body>
 </html>
