@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zayzah — Coming soon</title>
 <meta name="description" content="Zayzah — eastern wear for little girls. Launching 1 March 2027.">
-<meta name="theme-color" content="#F5EEE2">
+<meta name="theme-color" content="#FDFAF4">
 <meta property="og:title" content="Zayzah — Coming soon">
 <meta property="og:description" content="Eastern wear for little girls. Launching 1 March 2027.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zayzah.com/">
+<meta property="og:image" content="https://zayzah.com/images/frock-pink.jpg">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="fonts/cormorant-garamond-500-normal.ttf" as="font" type="font/ttf" crossorigin>
 <style>
@@ -18,74 +19,87 @@
 @font-face{font-family:"Jost";src:url(fonts/jost-400-normal.ttf) format("truetype");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Jost";src:url(fonts/jost-500-normal.ttf) format("truetype");font-weight:500;font-style:normal;font-display:swap}
 
-:root{--ivory:#FDFAF4;--linen:#F5EEE2;--beige:#EADFCB;--gold:#B08D4C;--gold-light:#DCC592;--gold-dark:#86652A;--taupe:#6F5D4B;--ink:#2F241C}
+:root{--ivory:#FDFAF4;--linen:#F5EEE2;--beige:#EADFCB;--blush:#F6DDD6;--gold:#B08D4C;--gold-light:#DCC592;--gold-dark:#86652A;--taupe:#6F5D4B;--ink:#2F241C}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;background:linear-gradient(180deg,var(--linen) 0%,var(--beige) 100%) fixed;color:var(--ink);font-family:"Jost",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow-x:hidden;background:var(--ivory);color:var(--ink);font-family:"Jost",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-/* Embroidered motif repeated softly across the background */
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23B08D4C' stroke-width='1' opacity='.26'%3E%3Cpath d='M36 24c4 5 4 9 0 12c-4-3-4-7 0-12zM36 48c4-5 4-9 0-12c-4 3-4 7 0 12zM24 36c5-4 9-4 12 0c-3 4-7 4-12 0zM48 36c-5-4-9-4-12 0c3 4 7 4 12 0z'/%3E%3C/g%3E%3Cg fill='%23B08D4C' opacity='.3'%3E%3Ccircle cx='0' cy='0' r='1.5'/%3E%3Ccircle cx='72' cy='0' r='1.5'/%3E%3Ccircle cx='0' cy='72' r='1.5'/%3E%3Ccircle cx='72' cy='72' r='1.5'/%3E%3C/g%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(ellipse at center,transparent 25%,#000 85%);mask-image:radial-gradient(ellipse at center,transparent 25%,#000 85%)}
+/* Soft washes of colour behind everything */
+body::before,body::after{content:"";position:fixed;z-index:0;border-radius:50%;filter:blur(90px);pointer-events:none}
+body::before{width:60vmax;height:60vmax;right:-18vmax;top:-20vmax;background:var(--blush);opacity:.75}
+body::after{width:50vmax;height:50vmax;left:-20vmax;bottom:-24vmax;background:var(--beige);opacity:.9}
 
-/* Butterflies drifting up behind the card */
+/* Butterflies drifting up in the background */
 .sky{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .fly{position:absolute;bottom:-60px;left:var(--x);width:var(--size);color:var(--gold);opacity:0;animation:drift var(--time) linear var(--delay) infinite}
 .fly svg{display:block;width:100%;animation:flap .55s ease-in-out infinite alternate}
 @keyframes drift{0%{transform:translate(0,0) rotate(var(--tilt));opacity:0}10%{opacity:var(--fade)}50%{transform:translate(var(--sway),-55vh) rotate(calc(var(--tilt) * -1))}90%{opacity:var(--fade)}100%{transform:translate(0,-115vh) rotate(var(--tilt));opacity:0}}
 @keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.4)}}
 
-main{position:relative;z-index:1;flex:1;width:100%;display:flex;align-items:center;justify-content:center;padding:36px 16px 20px}
+main{position:relative;z-index:1;flex:1;width:100%;max-width:1140px;margin:0 auto;padding:40px 24px 16px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;column-gap:clamp(32px,6vw,80px);align-content:center}
+.intro{grid-column:1;grid-row:1}
+.rest{grid-column:1;grid-row:2}
+.looks{grid-column:2;grid-row:1 / 3;align-self:center}
 
-/* The arch */
-.arch{position:relative;width:100%;max-width:560px;padding:clamp(64px,17vw,104px) clamp(18px,5vw,48px) 44px;text-align:center;background:linear-gradient(180deg,#FFFDF8 0%,var(--ivory) 100%);border:1px solid var(--gold);border-radius:280px 280px 10px 10px;box-shadow:0 40px 90px -40px rgba(134,101,42,.55),0 0 0 8px rgba(253,250,244,.55)}
-.arch::before{content:"";position:absolute;inset:9px;border:1px solid var(--gold-light);border-radius:271px 271px 5px 5px;pointer-events:none}
-
-.mark{display:inline-block;width:92px;color:var(--gold)}
-.mark div{animation:float 6s ease-in-out infinite}
-.mark svg{display:block;width:100%;animation:breathe 2.6s ease-in-out infinite alternate}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.brand{display:flex;align-items:center;gap:14px;color:var(--gold)}
+.brand svg{width:58px;animation:breathe 2.6s ease-in-out infinite alternate}
 @keyframes breathe{from{transform:scaleX(1)}to{transform:scaleX(.82)}}
+.name{margin:0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(30px,4vw,40px);letter-spacing:.3em;line-height:1;color:var(--ink)}
 
-.name{margin:16px 0 0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(36px,10.5vw,64px);letter-spacing:.3em;margin-right:-.3em;line-height:1.1;background:linear-gradient(100deg,var(--gold-dark) 0%,var(--gold) 25%,#E9D6A8 50%,var(--gold) 75%,var(--gold-dark) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .9s cubic-bezier(.2,.7,.2,1) .13s forwards,shimmer 7s linear infinite}
-@keyframes shimmer{from{background-position:220% 0}to{background-position:0 0}}
+.soon{margin:clamp(28px,5vw,52px) 0 0;font-size:12px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-dark)}
+.head{margin:12px 0 0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,6.4vw,74px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+.head em{font-style:italic;color:var(--gold-dark)}
 
-.orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto;color:var(--gold)}
-.orn::before,.orn::after{content:"";width:56px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-light))}
-.orn::after{transform:scaleX(-1)}
-.orn svg{width:22px;height:22px}
-
-.soon{margin:0;font-size:12px;font-weight:500;letter-spacing:.46em;margin-right:-.46em;text-transform:uppercase;color:var(--gold-dark)}
-.line{margin:12px 0 0;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(23px,5.6vw,31px);line-height:1.3;color:var(--taupe);text-wrap:balance}
+/* Dress photos, laid out like prints on a table */
+.looks{position:relative;width:100%;aspect-ratio:1 / .8}
+.looks figure{position:absolute;margin:0;padding:8px;background:#fff;border-radius:16px;box-shadow:0 30px 60px -28px rgba(47,36,28,.5),0 2px 6px rgba(47,36,28,.08)}
+.looks img{display:block;width:100%;height:auto;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px;background:var(--linen)}
+.looks .one{width:54%;left:23%;top:2%;z-index:2;--turn:-1.5deg;animation:sway 7s ease-in-out infinite}
+.looks .two{width:40%;left:0;top:20%;z-index:1;--turn:-7deg;animation:sway 8s ease-in-out -2s infinite}
+.looks .three{width:40%;right:0;top:10%;z-index:1;--turn:6deg;animation:sway 9s ease-in-out -4s infinite}
+@keyframes sway{0%,100%{transform:rotate(var(--turn)) translateY(0)}50%{transform:rotate(var(--turn)) translateY(-10px)}}
 
 /* Countdown: each number sits in a slowly turning stitched ring */
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,2vw,14px);max-width:440px;margin:34px auto 0;padding:0;list-style:none}
-.count li{position:relative;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 50% 35%,#fff 0%,var(--linen) 100%)}
-.count li::before{content:"";position:absolute;inset:0;border:1.5px dashed var(--gold);border-radius:50%;animation:turn 40s linear infinite}
-.count li::after{content:"";position:absolute;inset:5px;border:1px solid var(--beige);border-radius:50%}
-.count b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(26px,7.6vw,42px);line-height:1;font-variant-numeric:tabular-nums lining-nums;color:var(--ink)}
-.count span{margin-top:4px;font-size:clamp(8px,2.2vw,10px);letter-spacing:.18em;margin-right:-.18em;text-transform:uppercase;color:var(--gold-dark)}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1.6vw,14px);max-width:400px;margin:clamp(26px,4vw,40px) 0 0;padding:0;list-style:none}
+.count li{position:relative;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:#fff;box-shadow:0 14px 28px -18px rgba(134,101,42,.6)}
+.count li::before{content:"";position:absolute;inset:4px;border:1.5px dashed var(--gold-light);border-radius:50%;animation:turn 40s linear infinite}
+.count b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(26px,3.4vw,38px);line-height:1;font-variant-numeric:tabular-nums lining-nums}
+.count span{margin-top:4px;font-size:9px;letter-spacing:.18em;margin-right:-.18em;text-transform:uppercase;color:var(--gold-dark)}
 @keyframes turn{to{transform:rotate(360deg)}}
 
-.date{margin:26px 0 0;font-family:"Cormorant Garamond",serif;font-size:clamp(19px,4.6vw,23px);letter-spacing:.06em;color:var(--ink)}
-.date em{font-style:italic;color:var(--gold-dark)}
+.date{margin:22px 0 0;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe)}
+.date b{font-weight:500;color:var(--ink)}
 
-.follow{margin:30px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
-.links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:14px 0 0;padding:0;list-style:none}
-.links a{display:inline-block;padding:11px 22px;border:1px solid var(--gold);border-radius:999px;background:linear-gradient(180deg,#C2A163,var(--gold));color:#fff;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.06em;box-shadow:0 8px 18px -10px rgba(134,101,42,.8);transition:transform .2s,box-shadow .2s,background .2s}
-.links a:hover,.links a:focus-visible{transform:translateY(-2px);background:var(--gold-dark);box-shadow:0 12px 22px -10px rgba(134,101,42,.9);outline:none}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:28px 0 0;padding:0;list-style:none}
+.links .lead{margin-right:4px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;color:var(--taupe)}
+.links a{display:inline-block;padding:10px 20px;border-radius:999px;background:var(--ink);color:var(--ivory);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.05em;transition:transform .2s,background .2s}
+.links a:hover,.links a:focus-visible{transform:translateY(-2px);background:var(--gold-dark);outline:none}
 
-@media (max-width:420px){.links{gap:7px}.links a{padding:10px 15px;font-size:13px}}
-
-footer{position:relative;z-index:1;padding:8px 20px 26px;text-align:center;font-size:13px;color:var(--taupe)}
+footer{position:relative;z-index:1;width:100%;max-width:1140px;margin:0 auto;padding:16px 24px 26px;font-size:13px;color:var(--taupe)}
 footer a{color:var(--gold-dark)}
 
 /* Gentle entrance, one piece after another */
-.rise{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i) * .13s)}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.rise{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i) * .12s)}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* Phones and small tablets: one column, photos between the heading and the countdown */
+@media (max-width:860px){
+  main{display:block;max-width:520px;padding:32px 20px 8px;text-align:center}
+  .brand{justify-content:center}
+  .brand svg{width:50px}
+  .looks{margin:28px auto 0;max-width:420px}
+  .count{margin-left:auto;margin-right:auto;max-width:340px}
+  .links{justify-content:center;gap:8px}
+  .links .lead{width:100%;margin:0 0 2px}
+  .links a{padding:10px 16px;font-size:13px}
+  footer{text-align:center}
+}
 
 @media (prefers-reduced-motion:reduce){
   .sky{display:none}
-  .mark div,.mark svg,.count li::before{animation:none}
-  .rise,.name{opacity:1;animation:none}
+  .brand svg,.looks figure,.count li::before{animation:none}
+  .looks figure{transform:rotate(var(--turn))}
+  .rise{opacity:1;animation:none}
 }
 </style>
 </head>
@@ -93,32 +107,37 @@ footer a{color:var(--gold-dark)}
 <div class="sky" id="sky" aria-hidden="true"></div>
 
 <main>
-  <div class="arch">
-    <div class="mark rise" style="--i:0"><div>
+  <div class="intro">
+    <div class="brand rise" style="--i:0">
       <svg id="butterfly" viewBox="-136 -98 272 224" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M3,-6 C30,-95 120,-120 128,-62 C132,-22 70,6 3,4 M3,7 C60,10 100,40 84,78 C70,108 22,84 3,24"/>
         <path d="M-3,-6 C-30,-95 -120,-120 -128,-62 C-132,-22 -70,6 -3,4 M-3,7 C-60,10 -100,40 -84,78 C-70,108 -22,84 -3,24"/>
         <path d="M-2,-24 C-12,-54 -28,-68 -42,-70 M2,-24 C12,-54 28,-68 42,-70"/>
         <ellipse cx="0" cy="2" rx="4" ry="27" fill="currentColor" stroke="none"/>
       </svg>
-    </div></div>
-    <h1 class="name rise">ZAYZAH</h1>
-    <div class="orn rise" style="--i:2" aria-hidden="true">
-      <svg viewBox="-12 -12 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M0-10c3 4 3 7 0 10c-3-3-3-6 0-10zM0 10c3-4 3-7 0-10c-3 3-3 6 0 10zM-10 0c4-3 7-3 10 0c-3 3-6 3-10 0zM10 0c-4-3-7-3-10 0c3 3 6 3 10 0z"/><circle r="1.4" fill="currentColor" stroke="none"/></svg>
+      <p class="name">ZAYZAH</p>
     </div>
-    <p class="soon rise" id="soon" style="--i:3">Coming soon</p>
-    <p class="line rise" style="--i:4">Eastern wear for little girls</p>
+    <p class="soon rise" id="soon" style="--i:1">Coming soon</p>
+    <h1 class="head rise" style="--i:2">Eastern wear for <em>little girls</em></h1>
+  </div>
 
-    <ul class="count rise" id="count" style="--i:5" aria-label="Time left until launch">
+  <div class="looks rise" style="--i:3">
+    <figure class="two"><img src="images/frock-white.jpg" alt="White frock with small embroidered flowers" width="880" height="1100"></figure>
+    <figure class="three"><img src="images/frock-olive.jpg" alt="Olive frock embroidered with flowers" width="880" height="1100"></figure>
+    <figure class="one"><img src="images/frock-pink.jpg" alt="Pink frock with a row of embroidered flowers along the hem" width="880" height="1100"></figure>
+  </div>
+
+  <div class="rest">
+    <ul class="count rise" id="count" style="--i:4" aria-label="Time left until launch">
       <li><b id="d">–</b><span>Days</span></li>
       <li><b id="h">–</b><span>Hours</span></li>
       <li><b id="m">–</b><span>Minutes</span></li>
       <li><b id="s">–</b><span>Seconds</span></li>
     </ul>
-    <p class="date rise" id="date" style="--i:6"><em>Launching</em> 1 March 2027</p>
+    <p class="date rise" id="date" style="--i:5">Launching <b>1 March 2027</b></p>
 
-    <p class="follow rise" style="--i:7">Follow us for a first look</p>
-    <ul class="links rise" style="--i:8">
+    <ul class="links rise" style="--i:6">
+      <li class="lead">Follow us for a first look</li>
       <li><a href="https://www.instagram.com/zayzah.ae" target="_blank" rel="noopener">Instagram</a></li>
       <li><a href="https://www.tiktok.com/@zayzah.ae" target="_blank" rel="noopener">TikTok</a></li>
       <li><a href="https://www.facebook.com/zayzah.ae" target="_blank" rel="noopener">Facebook</a></li>
@@ -152,7 +171,7 @@ tick();
 
 // Background butterflies: copies of the mark, each with its own place, size and pace.
 var sky = document.getElementById("sky"), mark = document.getElementById("butterfly");
-[[6, 30, 26, 0, .5, 12], [17, 20, 34, 9, .35, -10], [30, 38, 22, 17, .55, 8], [68, 24, 30, 4, .4, -14], [82, 36, 24, 13, .55, 10], [93, 18, 32, 21, .3, -8]].forEach(function (b) {
+[[8, 24, 28, 3, .4, 12], [44, 18, 34, 12, .3, -10], [72, 26, 26, 19, .4, 8], [94, 20, 31, 7, .35, -12]].forEach(function (b) {
   var fly = document.createElement("div"), copy = mark.cloneNode(true);
   copy.removeAttribute("id");
   fly.className = "fly";
