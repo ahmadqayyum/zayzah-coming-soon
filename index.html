@@ -215,8 +215,9 @@ document.getElementById("lang").addEventListener("click", function () {
 paint();
 
 // How many people have opened this page. Each browser is counted once; the number is kept by a small free
-// counting service. If that service cannot be reached, or the number is still small, the line stays hidden.
-var COUNTER = "https://abacus.jasoncameron.dev/", COUNTER_KEY = "zayzah-com/coming-soon-visitors", SHOW_FROM = 10;
+// counting service. The owner chose to start the display at 10 (a head start, for the visits made before counting
+// began); every visitor after that adds one. If the service cannot be reached, the line stays hidden.
+var COUNTER = "https://abacus.jasoncameron.dev/", COUNTER_KEY = "zayzah-com/coming-soon-visitors", START_AT = 10;
 (function () {
   var counted = false;
   try { counted = localStorage.getItem("zayzah_counted") === "1"; } catch (e) { /* private mode: counted on each visit */ }
@@ -224,8 +225,7 @@ var COUNTER = "https://abacus.jasoncameron.dev/", COUNTER_KEY = "zayzah-com/comi
     .then(function (res) { return res.json(); })
     .then(function (data) {
       try { localStorage.setItem("zayzah_counted", "1"); } catch (e) { /* ignore */ }
-      var total = Number(data.value);
-      if (!(total >= SHOW_FROM)) return;
+      var total = START_AT + (Number(data.value) || 0);
       var number = document.getElementById("waiting-n"), start = Date.now();
       document.getElementById("waiting").hidden = false;
       (function climb() { // count up to the number over about a second
