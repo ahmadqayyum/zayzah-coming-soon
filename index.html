@@ -18,8 +18,10 @@
 @font-face{font-family:"Cormorant Garamond";src:url(fonts/cormorant-garamond-500-italic.ttf) format("truetype");font-weight:500;font-style:italic;font-display:swap}
 @font-face{font-family:"Jost";src:url(fonts/jost-400-normal.ttf) format("truetype");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Jost";src:url(fonts/jost-500-normal.ttf) format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Tajawal";src:url(fonts/tajawal-regular.ttf) format("truetype");font-weight:400 500;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:"Amiri";src:url(fonts/amiri-regular.ttf) format("truetype");font-weight:400 600;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFF}
 
-:root{--ivory:#FDFAF4;--linen:#F5EEE2;--beige:#EADFCB;--blush:#F6DDD6;--gold:#B08D4C;--gold-light:#DCC592;--gold-dark:#86652A;--taupe:#6F5D4B;--ink:#2F241C}
+:root{--ivory:#FDFAF4;--linen:#F5EEE2;--beige:#EADFCB;--blush:#F6DDD6;--gold:#B08D4C;--gold-light:#DCC592;--gold-dark:#86652A;--accent:#8A3550;--accent-deep:#5F2238;--taupe:#6F5D4B;--ink:#2F241C}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow-x:hidden;background:var(--ivory);color:var(--ink);font-family:"Jost",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -42,13 +44,14 @@ main{position:relative;z-index:1;flex:1;width:100%;max-width:1140px;margin:0 aut
 .looks{grid-column:2;grid-row:1 / 3;align-self:center}
 
 .brand{display:flex;align-items:center;gap:14px;color:var(--gold)}
+.name{direction:ltr}
 .brand svg{width:58px;animation:breathe 2.6s ease-in-out infinite alternate}
 @keyframes breathe{from{transform:scaleX(1)}to{transform:scaleX(.82)}}
 .name{margin:0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(30px,4vw,40px);letter-spacing:.3em;line-height:1;color:var(--ink)}
 
-.soon{margin:clamp(28px,5vw,52px) 0 0;font-size:12px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-dark)}
+.soon{margin:clamp(28px,5vw,52px) 0 0;font-size:12px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--accent)}
 .head{margin:12px 0 0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,6vw,68px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
-.head em{font-style:italic;color:var(--gold-dark)}
+.head em{font-style:italic;color:var(--accent)}
 
 /* Dress photos, laid out like prints on a table */
 .looks{position:relative;width:100%;aspect-ratio:1 / .8}
@@ -72,11 +75,22 @@ main{position:relative;z-index:1;flex:1;width:100%;max-width:1140px;margin:0 aut
 
 .links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:28px 0 0;padding:0;list-style:none}
 .links .lead{margin-right:4px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;color:var(--taupe)}
-.links a{display:inline-block;padding:10px 20px;border-radius:999px;background:var(--ink);color:var(--ivory);text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.05em;transition:transform .2s,background .2s}
-.links a:hover,.links a:focus-visible{transform:translateY(-2px);background:var(--gold-dark);outline:none}
+.links a{display:inline-block;padding:10px 20px;border-radius:999px;background:var(--accent);color:#fff;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.05em;transition:transform .2s,background .2s}
+.links a:hover,.links a:focus-visible{transform:translateY(-2px);background:var(--accent-deep);outline:none}
 
 footer{position:relative;z-index:1;width:100%;max-width:1140px;margin:0 auto;padding:16px 24px 26px;font-size:13px;color:var(--taupe)}
-footer a{color:var(--gold-dark)}
+footer a{color:var(--accent)}
+
+/* Language link, and the Arabic (right to left) version */
+.lang{position:absolute;z-index:2;top:20px;inset-inline-end:24px;padding:7px 16px;border:1px solid var(--gold-light);border-radius:999px;background:rgba(255,255,255,.6);color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
+.lang:hover{border-color:var(--accent);color:var(--accent)}
+[dir="rtl"] body{font-family:"Jost","Tajawal",system-ui,sans-serif}
+[dir="rtl"] .head,[dir="rtl"] .links .lead{font-family:"Cormorant Garamond","Amiri",serif}
+[dir="rtl"] .head{line-height:1.4;letter-spacing:0}
+[dir="rtl"] .head em,[dir="rtl"] .links .lead{font-style:normal}
+[dir="rtl"] .soon,[dir="rtl"] .date,[dir="rtl"] .count span,[dir="rtl"] .links a{letter-spacing:0;margin-right:0;font-size:15px}
+[dir="rtl"] .count span{font-size:12px}
+[dir="rtl"] .links .lead{margin-right:0;margin-left:4px}
 
 /* Gentle entrance, one piece after another */
 .rise{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i) * .12s)}
@@ -93,6 +107,7 @@ footer a{color:var(--gold-dark)}
   .links .lead{width:100%;margin:0 0 2px}
   .links a{padding:10px 16px;font-size:13px}
   footer{text-align:center}
+  .lang{position:relative;top:auto;inset-inline-end:auto;align-self:center;margin-top:16px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -105,6 +120,7 @@ footer a{color:var(--gold-dark)}
 </head>
 <body>
 <div class="sky" id="sky" aria-hidden="true"></div>
+<button type="button" class="lang" id="lang" lang="ar">العربية</button>
 
 <main>
   <div class="intro">
@@ -117,8 +133,8 @@ footer a{color:var(--gold-dark)}
       </svg>
       <p class="name">ZAYZAH</p>
     </div>
-    <p class="soon rise" id="soon" style="--i:1">Coming soon</p>
-    <h1 class="head rise" style="--i:2">Tradition for <em>every generation</em></h1>
+    <p class="soon rise" id="soon" style="--i:1" data-ar="قريباً">Coming soon</p>
+    <h1 class="head rise" style="--i:2" data-ar="تقاليد &lt;em&gt;لكل الأجيال&lt;/em&gt;">Tradition for <em>every generation</em></h1>
   </div>
 
   <div class="looks rise" style="--i:3">
@@ -129,22 +145,22 @@ footer a{color:var(--gold-dark)}
 
   <div class="rest">
     <ul class="count rise" id="count" style="--i:4" aria-label="Time left until launch">
-      <li><b id="d">–</b><span>Days</span></li>
-      <li><b id="h">–</b><span>Hours</span></li>
-      <li><b id="m">–</b><span>Minutes</span></li>
-      <li><b id="s">–</b><span>Seconds</span></li>
+      <li><b id="d">–</b><span data-ar="أيام">Days</span></li>
+      <li><b id="h">–</b><span data-ar="ساعات">Hours</span></li>
+      <li><b id="m">–</b><span data-ar="دقائق">Minutes</span></li>
+      <li><b id="s">–</b><span data-ar="ثوانٍ">Seconds</span></li>
     </ul>
-    <p class="date rise" id="date" style="--i:5">Launching <b>1 March 2027</b></p>
+    <p class="date rise" id="date" style="--i:5" data-ar="الافتتاح &lt;b&gt;1 مارس 2027&lt;/b&gt;">Launching <b>1 March 2027</b></p>
 
     <ul class="links rise" style="--i:6">
-      <li class="lead">Follow us for a first look</li>
-      <li><a href="https://www.instagram.com/zayzah.ae" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@zayzah.ae" target="_blank" rel="noopener">TikTok</a></li>
-      <li><a href="https://www.facebook.com/zayzah.ae" target="_blank" rel="noopener">Facebook</a></li>
+      <li class="lead" data-ar="تابعونا لتكونوا أول من يرى">Follow us for a first look</li>
+      <li><a href="https://www.instagram.com/zayzah.ae" target="_blank" rel="noopener" data-ar="إنستغرام">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@zayzah.ae" target="_blank" rel="noopener" data-ar="تيك توك">TikTok</a></li>
+      <li><a href="https://www.facebook.com/zayzah.ae" target="_blank" rel="noopener" data-ar="فيسبوك">Facebook</a></li>
     </ul>
   </div>
 </main>
-<footer>Abu Dhabi, UAE &nbsp;·&nbsp; <a href="mailto:info@zayzah.com">info@zayzah.com</a></footer>
+<footer><span data-ar="أبوظبي، الإمارات">Abu Dhabi, UAE</span> &nbsp;·&nbsp; <a href="mailto:info@zayzah.com">info@zayzah.com</a></footer>
 
 <script>
 // Launch: midnight at the start of 1 March 2027, UAE time (UTC+4).
@@ -155,8 +171,8 @@ function tick() {
   var left = launch - Date.now();
   if (left <= 0) {
     document.getElementById("count").hidden = true;
-    document.getElementById("soon").textContent = "We are open";
-    document.getElementById("date").textContent = "Launched 1 March 2027";
+    open = true;
+    paint();
     clearInterval(timer);
     return;
   }
@@ -166,6 +182,32 @@ function tick() {
   el.m.textContent = pad(Math.floor(secs % 3600 / 60));
   el.s.textContent = pad(secs % 60);
 }
+
+// Arabic: each piece of text carries its Arabic in data-ar; the choice is remembered in this browser.
+var arabic = false, open = false;
+try { arabic = localStorage.getItem("zayzah_lang") === "ar"; } catch (e) { /* private mode */ }
+if (/[?&]lang=ar\b/.test(location.search)) arabic = true;
+var pieces = document.querySelectorAll("[data-ar]");
+pieces.forEach(function (p) { p.dataset.en = p.innerHTML; });
+function paint() {
+  document.documentElement.lang = arabic ? "ar" : "en";
+  document.documentElement.dir = arabic ? "rtl" : "ltr";
+  pieces.forEach(function (p) { p.innerHTML = arabic ? p.dataset.ar : p.dataset.en; });
+  var button = document.getElementById("lang");
+  button.textContent = arabic ? "English" : "العربية";
+  button.lang = arabic ? "en" : "ar";
+  if (open) {
+    document.getElementById("soon").textContent = arabic ? "افتتحنا" : "We are open";
+    document.getElementById("date").textContent = arabic ? "افتتحنا في 1 مارس 2027" : "Launched 1 March 2027";
+  }
+}
+document.getElementById("lang").addEventListener("click", function () {
+  arabic = !arabic;
+  try { localStorage.setItem("zayzah_lang", arabic ? "ar" : "en"); } catch (e) { /* ignore */ }
+  paint();
+});
+paint();
+
 var timer = setInterval(tick, 1000);
 tick();
 
