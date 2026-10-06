@@ -72,6 +72,11 @@ main{position:relative;z-index:1;flex:1;width:100%;max-width:1140px;margin:0 aut
 
 .date{margin:22px 0 0;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe)}
 .date b{font-weight:500;color:var(--ink)}
+.waiting{display:inline-flex;align-items:baseline;gap:8px;margin:18px 0 0;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--blush);font-size:15px;color:var(--taupe)}
+.waiting[hidden]{display:none}
+.waiting b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:24px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums lining-nums}
+.waiting::before{content:"";align-self:center;width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
 
 .links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:28px 0 0;padding:0;list-style:none}
 .links .lead{margin-right:4px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;color:var(--taupe)}
@@ -112,7 +117,7 @@ footer a{color:var(--accent)}
 
 @media (prefers-reduced-motion:reduce){
   .sky{display:none}
-  .brand svg,.looks figure,.count li::before{animation:none}
+  .brand svg,.looks figure,.count li::before,.waiting::before{animation:none}
   .looks figure{transform:rotate(var(--turn))}
   .rise{opacity:1;animation:none}
 }
@@ -151,6 +156,7 @@ footer a{color:var(--accent)}
       <li><b id="s">–</b><span data-ar="ثوانٍ">Seconds</span></li>
     </ul>
     <p class="date rise" id="date" style="--i:5" data-ar="الافتتاح &lt;b&gt;1 مارس 2027&lt;/b&gt;">Launching <b>1 March 2027</b></p>
+    <p class="waiting" id="waiting" hidden><b id="waiting-n">0</b> <span data-ar="شخصاً ينتظرون افتتاحنا بالفعل">people are already waiting for us</span></p>
 
     <ul class="links rise" style="--i:6">
       <li class="lead" data-ar="تابعونا لتكونوا أول من يرى">Follow us for a first look</li>
@@ -207,6 +213,29 @@ document.getElementById("lang").addEventListener("click", function () {
   paint();
 });
 paint();
+
+// How many people have opened this page. Each browser is counted once; the number is kept by a small free
+// counting service. If that service cannot be reached, or the number is still small, the line stays hidden.
+var COUNTER = "https://abacus.jasoncameron.dev/", COUNTER_KEY = "zayzah-com/coming-soon-visitors", SHOW_FROM = 10;
+(function () {
+  var counted = false;
+  try { counted = localStorage.getItem("zayzah_counted") === "1"; } catch (e) { /* private mode: counted on each visit */ }
+  fetch(COUNTER + (counted ? "get/" : "hit/") + COUNTER_KEY)
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      try { localStorage.setItem("zayzah_counted", "1"); } catch (e) { /* ignore */ }
+      var total = Number(data.value);
+      if (!(total >= SHOW_FROM)) return;
+      var number = document.getElementById("waiting-n"), start = Date.now();
+      document.getElementById("waiting").hidden = false;
+      (function climb() { // count up to the number over about a second
+        var part = Math.min(1, (Date.now() - start) / 1100);
+        number.textContent = Math.round(total * (1 - Math.pow(1 - part, 3))).toLocaleString("en-US");
+        if (part < 1) requestAnimationFrame(climb);
+      })();
+    })
+    .catch(function () { /* the line simply stays hidden */ });
+})();
 
 var timer = setInterval(tick, 1000);
 tick();
