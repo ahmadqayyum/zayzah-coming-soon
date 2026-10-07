@@ -87,24 +87,6 @@ main{position:relative;z-index:1;flex:1;width:100%;max-width:1140px;margin:0 aut
 footer{position:relative;z-index:1;width:100%;max-width:1140px;margin:0 auto;padding:16px 24px 26px;font-size:13px;color:var(--taupe)}
 footer a{color:var(--accent)}
 
-/* A blurred glimpse of what is coming, in a browser-window frame */
-.peek{position:relative;z-index:1;width:100%;max-width:980px;margin:0 auto;padding:clamp(40px,7vw,84px) 24px 30px;text-align:center}
-.peek-kicker{margin:0;font-size:12px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--accent)}
-.peek-head{margin:12px 0 28px;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(28px,4.4vw,46px);line-height:1.15;text-wrap:balance}
-.peek-head em{font-style:italic;color:var(--accent)}
-.peek-frame{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 40px 80px -44px rgba(95,34,56,.6),0 0 0 1px var(--beige)}
-.peek-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:var(--linen);border-bottom:1px solid var(--beige);direction:ltr}
-.peek-bar i{width:10px;height:10px;border-radius:50%;background:var(--gold-light)}
-.peek-bar span{flex:1;margin:0 34px 0 18px;padding:4px 12px;border-radius:999px;background:#fff;font-size:12.5px;color:var(--taupe)}
-.peek-shot{position:relative}
-.peek-shot img{display:block;width:100%;height:auto}
-.peek-lock{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:10px;margin:0;padding:12px 22px;border-radius:999px;background:rgba(255,255,255,.9);box-shadow:0 14px 30px -16px rgba(47,36,28,.6);font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap}
-.peek-lock svg{width:20px;height:20px;color:var(--accent);flex:none}
-[dir="rtl"] .peek-head{font-family:"Cormorant Garamond","Amiri",serif;line-height:1.5}
-[dir="rtl"] .peek-head em{font-style:normal}
-[dir="rtl"] .peek-kicker{letter-spacing:0;font-size:15px}
-@media (max-width:520px){.peek-lock{font-size:13px;padding:10px 16px}.peek-bar span{margin:0 8px 0 10px}}
-
 /* Language link, and the Arabic (right to left) version */
 .lang{position:absolute;z-index:2;top:20px;inset-inline-end:24px;padding:7px 16px;border:1px solid var(--gold-light);border-radius:999px;background:rgba(255,255,255,.6);color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
 .lang:hover{border-color:var(--accent);color:var(--accent)}
@@ -188,18 +170,6 @@ footer a{color:var(--accent)}
     </ul>
   </div>
 </main>
-
-<section class="peek">
-  <p class="peek-kicker" data-ar="نظرة خاطفة">A little peek</p>
-  <h2 class="peek-head" data-ar="شيء ما يُجهَّز &lt;em&gt;خلف الستار&lt;/em&gt;">Something is taking shape <em>behind the curtain</em></h2>
-  <div class="peek-frame">
-    <div class="peek-bar" aria-hidden="true"><i></i><i></i><i></i><span>zayzah.com</span></div>
-    <div class="peek-shot">
-      <img src="images/sneak-peek.jpg" alt="A blurred preview of what is coming" width="1200" height="717" loading="lazy">
-      <p class="peek-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-ar="يُكشف عنه في 1 مارس 2027">Unveiling on 1 March 2027</span></p>
-    </div>
-  </div>
-</section>
 <footer><span data-ar="أبوظبي، الإمارات">Abu Dhabi, UAE</span> &nbsp;·&nbsp; <a href="mailto:info@zayzah.com">info@zayzah.com</a></footer>
 
 <script>
