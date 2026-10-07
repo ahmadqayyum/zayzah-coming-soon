@@ -164,9 +164,9 @@ footer a{color:var(--accent)}
 
     <ul class="links rise" style="--i:6">
       <li class="lead" data-ar="تابعونا لتكونوا أول من يرى">Follow us for a first look</li>
-      <li><a href="https://www.instagram.com/zayzah.ae" target="_blank" rel="noopener" data-ar="إنستغرام">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@zayzah.ae" target="_blank" rel="noopener" data-ar="تيك توك">TikTok</a></li>
-      <li><a href="https://www.facebook.com/zayzah.ae" target="_blank" rel="noopener" data-ar="فيسبوك">Facebook</a></li>
+      <li><a href="https://www.instagram.com/zayzah.ae" target="_blank" rel="noopener" data-goatcounter-click="follow-instagram" data-goatcounter-title="Clicked Instagram" data-ar="إنستغرام">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@zayzah.ae" target="_blank" rel="noopener" data-goatcounter-click="follow-tiktok" data-goatcounter-title="Clicked Tiktok" data-ar="تيك توك">TikTok</a></li>
+      <li><a href="https://www.facebook.com/zayzah.ae" target="_blank" rel="noopener" data-goatcounter-click="follow-facebook" data-goatcounter-title="Clicked Facebook" data-ar="فيسبوك">Facebook</a></li>
     </ul>
   </div>
 </main>
@@ -214,6 +214,9 @@ function paint() {
 document.getElementById("lang").addEventListener("click", function () {
   arabic = !arabic;
   try { localStorage.setItem("zayzah_lang", arabic ? "ar" : "en"); } catch (e) { /* ignore */ }
+  if (window.goatcounter && window.goatcounter.count) { // visitor statistics: how many switch language
+    window.goatcounter.count({ path: arabic ? "switch-to-arabic" : "switch-to-english", title: "Language switch", event: true });
+  }
   paint();
 });
 paint();
@@ -255,5 +258,7 @@ var sky = document.getElementById("sky"), mark = document.getElementById("butter
   sky.appendChild(fly);
 });
 </script>
+<!-- Visitor statistics (GoatCounter): visits, countries and where visitors came from. No cookies, no personal details. -->
+<script data-goatcounter="https://zayzah.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
