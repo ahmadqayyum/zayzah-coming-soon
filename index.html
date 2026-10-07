@@ -10,7 +10,7 @@
 <meta property="og:description" content="Tradition for every generation. Launching 1 March 2027.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://zayzah.com/">
-<meta property="og:image" content="https://zayzah.com/images/frock-pink.jpg">
+<meta property="og:image" content="https://zayzah.com/images/embroidery-peach.jpg">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="fonts/cormorant-garamond-500-normal.ttf" as="font" type="font/ttf" crossorigin>
 <style>
@@ -52,6 +52,7 @@ main{position:relative;z-index:1;flex:1;width:100%;max-width:1140px;margin:0 aut
 .soon{margin:clamp(28px,5vw,52px) 0 0;font-size:12px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--accent)}
 .head{margin:12px 0 0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,6vw,68px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
 .head em{font-style:italic;color:var(--accent)}
+.tease{margin:14px 0 0;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(19px,2vw,23px);line-height:1.4;color:var(--taupe);max-width:26ch}
 
 /* Dress photos, laid out like prints on a table */
 .looks{position:relative;width:100%;aspect-ratio:1 / .8}
@@ -92,7 +93,8 @@ footer a{color:var(--accent)}
 [dir="rtl"] body{font-family:"Jost","Tajawal",system-ui,sans-serif}
 [dir="rtl"] .head,[dir="rtl"] .links .lead{font-family:"Cormorant Garamond","Amiri",serif}
 [dir="rtl"] .head{line-height:1.4;letter-spacing:0}
-[dir="rtl"] .head em,[dir="rtl"] .links .lead{font-style:normal}
+[dir="rtl"] .head em,[dir="rtl"] .links .lead,[dir="rtl"] .tease{font-style:normal}
+[dir="rtl"] .tease{font-family:"Cormorant Garamond","Amiri",serif}
 [dir="rtl"] .soon,[dir="rtl"] .date,[dir="rtl"] .count span,[dir="rtl"] .links a{letter-spacing:0;margin-right:0;font-size:15px}
 [dir="rtl"] .count span{font-size:12px}
 [dir="rtl"] .links .lead{margin-right:0;margin-left:4px}
@@ -105,6 +107,7 @@ footer a{color:var(--accent)}
 @media (max-width:860px){
   main{display:block;max-width:520px;padding:32px 20px 8px;text-align:center}
   .brand{justify-content:center}
+  .tease{margin-left:auto;margin-right:auto}
   .brand svg{width:50px}
   .looks{margin:28px auto 0;max-width:420px}
   .count{margin-left:auto;margin-right:auto;max-width:340px}
@@ -140,12 +143,13 @@ footer a{color:var(--accent)}
     </div>
     <p class="soon rise" id="soon" style="--i:1" data-ar="قريباً">Coming soon</p>
     <h1 class="head rise" style="--i:2" data-ar="تقاليد &lt;em&gt;لكل الأجيال&lt;/em&gt;">Tradition for <em>every generation</em></h1>
+    <p class="tease rise" style="--i:3" data-ar="شيء جميل يُطرَّز الآن، غرزةً بغرزة.">Something beautiful is being stitched, one thread at a time.</p>
   </div>
 
   <div class="looks rise" style="--i:3">
-    <figure class="two"><img src="images/frock-white.jpg" alt="White frock with small embroidered flowers" width="880" height="1100"></figure>
-    <figure class="three"><img src="images/frock-olive.jpg" alt="Olive frock embroidered with flowers" width="880" height="1100"></figure>
-    <figure class="one"><img src="images/frock-pink.jpg" alt="Pink frock with a row of embroidered flowers along the hem" width="880" height="1100"></figure>
+    <figure class="two"><img src="images/embroidery-blue.jpg" alt="A close-up of hand embroidery on blue cotton" width="480" height="600"></figure>
+    <figure class="three"><img src="images/embroidery-navy.jpg" alt="A close-up of embroidered vines on navy cotton" width="800" height="1000"></figure>
+    <figure class="one"><img src="images/embroidery-peach.jpg" alt="A close-up of embroidered flowers on peach cotton" width="800" height="1000"></figure>
   </div>
 
   <div class="rest">
