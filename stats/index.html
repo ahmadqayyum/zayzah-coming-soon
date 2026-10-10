@@ -66,6 +66,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .rows .v{text-align:right;white-space:nowrap}
 .rows .v small{color:var(--muted);font-size:12.5px;margin-left:6px}
 footer{margin-top:26px}
+.own{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 18px;padding:12px 16px;border-radius:12px;background:#eef8f1;border:1px solid #cfe7d8;color:#1c5f43;font-size:14.5px}
+.own.off{background:#fff;border-color:var(--line);color:var(--muted)}
+.own .btn{padding:6px 14px;font-size:13.5px}
 @media (max-width:560px){.cols{height:190px}.bar em{font-size:10px}}
 </style>
 </head>
@@ -93,6 +96,7 @@ footer{margin-top:26px}
     </div>
   </div>
   <p class="err" id="err" hidden></p>
+  <p class="own" id="own"><span id="own-text"></span> <button class="btn" id="own-toggle"></button></p>
   <div class="tiles" id="tiles"></div>
   <div class="card wide"><h2>Visits per day</h2><div id="days"></div></div>
   <div class="card wide"><h2>Time of day (UAE time)</h2><div id="hours"></div></div>
@@ -129,6 +133,7 @@ $("login").addEventListener("submit", async function (e) {
     access = await unlock($("user").value, $("pass").value);
     try { sessionStorage.setItem(KEEP, JSON.stringify(access)); } catch (x) { /* private mode */ }
     $("pass").value = "";
+    setOwned(true);                                      // whoever signs in here is an owner: stop counting this browser
     start();
   } catch (x) {
     $("login-err").textContent = "That username and password don't match."; $("login-err").hidden = false;
@@ -143,8 +148,28 @@ $("refresh").addEventListener("click", load);
 try { access = JSON.parse(sessionStorage.getItem(KEEP) || "null"); } catch (x) { access = null; }
 if (access) start();
 
+/* ---------- not counting the owners' own visits ----------
+   This page and the coming-soon page share one address, so they share this browser's small storage. The counting
+   script on the coming-soon page skips any browser that has "skipgc" set. Signing in here sets it, because only the
+   owners sign in here. The same is done for the public "people waiting" number. */
+function owned() { try { return localStorage.getItem("skipgc") === "t"; } catch (x) { return false; } }
+function setOwned(yes) {
+  try {
+    if (yes) { localStorage.setItem("skipgc", "t"); localStorage.setItem("zayzah_counted", "1"); }
+    else localStorage.removeItem("skipgc");
+  } catch (x) { /* private mode: cannot be remembered */ }
+  showOwned();
+}
+function showOwned() {
+  var yes = owned();
+  $("own").className = yes ? "own" : "own off";
+  $("own-text").textContent = yes ? "Your own visits from this browser are not counted." : "Visits from this browser are being counted like any visitor's.";
+  $("own-toggle").textContent = yes ? "Count this browser again" : "Stop counting this browser";
+}
+$("own-toggle").addEventListener("click", function () { setOwned(!owned()); });
+
 function start() {
-  $("gate").hidden = true; $("app").hidden = false;
+  $("gate").hidden = true; $("app").hidden = false; showOwned();
   $("periods").replaceChildren.apply($("periods"), PERIODS.map(function (p) {
     var b = el("button", "btn" + (p[0] === days ? " on" : ""), p[1]);
     b.addEventListener("click", function () { days = p[0]; start(); });
